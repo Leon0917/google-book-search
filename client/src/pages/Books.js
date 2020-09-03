@@ -13,7 +13,7 @@ function Books() {
 
   // Load all books and store them with setBooks
   useEffect(() => {
-    loadBooks();
+   // loadBooks();
   }, []);
 
 
@@ -60,7 +60,7 @@ function Books() {
             </Jumbotron>
             {books.length ? (
                 <List>
-                    {books.map(books => {
+                    {books.map(book => {
                         return(
                             <ListItem key={books._id}>
                                 <a href={"/books/" + book._id}>

@@ -7,8 +7,8 @@ function App() {
     return (
       <div>
        <Books />
-       <Details />
-       <NoMatch />
+       {/* <Details />
+       <NoMatch /> */}
       </div>
     );
   }

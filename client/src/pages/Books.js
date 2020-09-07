@@ -6,28 +6,60 @@ import { Col, Row, Container } from "../component/Grid";
 import { List, ListItem } from "../component/List";
 import { Input, FormBtn } from "../component/Form";
 import Nav from "../component/Nav";
-
+import axios from "axios";
+import Details from "./Details";
 
 class Books extends React.Component{
   state ={
-    searchterm :""
+    searchterm :"",
+    booklist:[]
   }
   getData =(event) => {
       var data = event.target.value
       this.setState({searchterm : data})
-      console.log(this.state.searchterm)
+      // console.log(this.state.searchterm)
+  }
+  getAPI =(event)=>{
+    event.preventDefault()
+    axios.get("https://www.googleapis.com/books/v1/volumes?q="+this.state.searchterm)
+    .then((response) => {
+      console.log(response)
+      var books = response.data.items
+      var bookarray = []
+      for(let i=0;i<books.length;i++){
+        var onebook = {
+          title: books[i].volumeInfo.title,
+          author: books[i].volumeInfo.authors[0]|| "Not Available",
+          description: books[i].volumeInfo.description || "Unavailable from api"
+        }
+        bookarray.push(onebook)
+      }
+      this.setState({booklist:bookarray})
+    })
   }
   render(){
     return(<div>
        <Nav></Nav>
       <Jumbotron>MERN stack APP - Google Books API search</Jumbotron>
-     
+         <form>
              <Input
               onChange={this.getData}
               name="searchterm"
               value={this.state.searchterm}
-               placeHolder="Name of authorSearch by books name, author"/>
-
+               placeholder="Name of authorSearch by books name, author"/>
+                <FormBtn
+              onClick={this.getAPI} >
+              Search
+            </FormBtn>
+            </form>
+            {this.state.booklist.map((b,key) => {
+              return(<Details
+              title = {b.title}
+              author ={b.author}
+              description = {b.description}
+              key = {key}
+              ></Details>)
+            })}
 
     </div>)
   }
@@ -59,12 +91,7 @@ class Books extends React.Component{
 //           </Jumbotron>
 //          
 //             <Input onChange={() => {}} name="title" placeHolder="Book title" />
-//             <FormBtn
-//               // disabled={!(formObject.author && formObject.title)}
-//               onClick={() => {}}
-//             >
-//               Search
-//             </FormBtn>
+//            
 //           </form>
 //         </Col>
 //         <Col size="med-12 sm-12">

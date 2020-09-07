@@ -1,9 +1,33 @@
 import React from "react";
+import Axios from "axios";
 
 class Details extends React.Component{
+    state = {
+        title : this.props.title,
+        author : this.props.author,
+        description : this.props.description,
+        saved : false
+    }
+    saveBook =() =>{
+        Axios.post("/api/books",
+        {
+            title:this.state.title,
+            author:this.state.author,
+            description:this.state.description
+        }).then((result) => {
+            console.log("Book Saved")
+        })
+    }
     render(){
-        return(<div>
-            <h2>Detail</h2>
+        return(<div class="card">
+         
+              <div>
+             <h5>{this.props.title}</h5>
+             <h6>{this.props.author}</h6>
+             <p>{this.props.description}</p>
+             {this.saved ? "Book Saved" :
+             <button onClick={this.saveBook}>Save Book</button>}
+             </div>
         </div>)
     }
 }

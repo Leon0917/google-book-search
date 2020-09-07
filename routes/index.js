@@ -1,5 +1,7 @@
 var router = require ("express").Router()
 var db = require("../models")
+
+
 router.get("/api/books", function(req, res){
     db.find({}).then(function(records){
         res.json(records)

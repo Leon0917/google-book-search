@@ -30,7 +30,7 @@ class SavedBook extends React.Component {
           {this.deleted ? (
             "Book Deleted"
           ) : (
-            <button onClick={this.delBook}>Delete Book</button>
+            <button type="button" className="btn-primary" onClick={this.delBook}>Delete Book</button>
           )}
         </div>
       </div>

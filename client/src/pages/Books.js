@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Jumbotron from "../component/Jumbotron";
-import DeleteBtn from "../component/DeleteBtn";
-import Api from "../utils/Api";
-import { Col, Row, Container } from "../component/Grid";
-import { List, ListItem } from "../component/List";
 import { Input, FormBtn } from "../component/Form";
-import Nav from "../component/Nav";
 import Axios from "axios";
 import Details from "./Details";
 import SavedBook from "./SavedBook";
@@ -32,7 +27,6 @@ class Books extends React.Component {
   getData = (event) => {
     var data = event.target.value;
     this.setState({ searchterm: data });
-    // console.log(this.state.searchterm)
   };
   getAPI = (event) => {
     event.preventDefault();
@@ -57,14 +51,13 @@ class Books extends React.Component {
   render() {
     return (
       <div>
-        {/* <Nav></Nav> */}
         <Jumbotron>MERN stack APP - Google Books API search</Jumbotron>
         <form>
           <Input
             onChange={this.getData}
             name="searchterm"
             value={this.state.searchterm}
-            placeholder="Name of author, Search by books name, author"
+            placeholder="Search by books name, author"
           />
           <FormBtn onClick={this.getAPI}>Search</FormBtn>
         </form>

@@ -33,7 +33,7 @@ class Details extends React.Component {
           {this.state.saved ? 
            <h3> Book Saved</h3>
            : 
-            <button onClick={this.saveBook}>Save Book</button>
+            <button className="btn-info" onClick={this.saveBook}>Save Book</button>
           }
         </div>
       </div>

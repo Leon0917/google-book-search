@@ -23,7 +23,10 @@ class Details extends React.Component {
   render() {
     return (
       <div className="card">
-        <div>
+        <div  style={{
+            marginLeft: "15px",
+            padding: "10px"
+          }}>
           <h5>{this.props.title}</h5>
           <h6>{this.props.author}</h6>
           <p>{this.props.description}</p>

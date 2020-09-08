@@ -21,7 +21,7 @@ class SavedBook extends React.Component {
         <div
           style={{
             marginLeft: "15px",
-            padding: "10px"
+            padding: "10px",
           }}
         >
           <h5>{this.props.title}</h5>
@@ -30,7 +30,13 @@ class SavedBook extends React.Component {
           {this.deleted ? (
             "Book Deleted"
           ) : (
-            <button type="button" className="btn-primary" onClick={this.delBook}>Delete Book</button>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={this.delBook}
+            >
+              Delete Book
+            </button>
           )}
         </div>
       </div>
